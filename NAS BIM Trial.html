@@ -1,0 +1,21 @@
+from flask import Flask, render_template, request
+import openpyxl
+
+app = Flask(__name__)
+
+@app.route('/', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        email = request.form['email']
+        workbook = openpyxl.load_workbook('authorized_emails.xlsx')
+        sheet = workbook.active
+        for row in sheet.iter_rows(min_row=2, max_col=1):
+            if row[0].value == email:
+                # Successful login, redirect to protected area
+                return redirect('/protected')
+        # Email not found, display error
+        return render_template('login.html', error='Invalid email')
+    return render_template('login.html')
+
+if __name__ == '__main__':
+    app.run()

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login to View Power BI Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+ 
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+ 
+        /* Login form styles */
+        .login-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+ 
+        .login-form h2 {
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+ 
+        .login-form input {
+            width: 100%;
+            padding: 0.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+ 
+        .login-form button {
+            width: 100%;
+            padding: 0.5rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+ 
+        .login-form button:hover {
+            background-color: #45a049;
+        }
+ 
+        /* Hide iframe container by default */
+        .iframe-container {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+        }
+ 
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Form -->
+    <div class="container" id="loginContainer">
+        <div class="login-form">
+            <h2>Enter Credentials</h2>
+            <form id="loginForm">
+                <input type="email" id="email" placeholder="Email" required />
+                <input type="password" id="password" placeholder="Password" required />
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    </div>
+ 
+    <!-- Power BI Iframe (Hidden until login is successful) -->
+    <div class="iframe-container" id="iframeContainer">
+        <iframe src="https://app.powerbi.com/view?r=eyJrIjoiM2JhYzgxNWQtZjRlNy00MTU1LTgwNGUtZGJjYjBiMmNjMGFiIiwidCI6ImZjNzFiZjlhLTJiM2ItNDE1My05ZGY2LWU2ODVmMjlhMzlhNCIsImMiOjEwfQ%3D%3D" allowFullScreen="true"></iframe>
+    </div>
+ 
+    <script>
+        // Simulated login process
+        const loginForm = document.getElementById('loginForm');
+        const loginContainer = document.getElementById('loginContainer');
+        const iframeContainer = document.getElementById('iframeContainer');
+ 
+        loginForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+ 
+            // Replace with actual authentication check
+            if (email === "test@example.com" && password === "password123") {
+                // Hide login form and show iframe
+loginContainer.style.display = 'none';
+iframeContainer.style.display = 'flex';
+            } else {
+                alert('Invalid email or password');
+            }
+        });
+    </script>
+</body>
+</html>
